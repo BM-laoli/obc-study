@@ -128,6 +128,10 @@ nil 不能存 但是 NSNULL 可以
 全局变量是什么(预处理器宏)
 重要的原则
 
+### NSString NSData 对象写入文件
+
+NSMutableStrin, wireToFile方法和 NSError，读取文件，. 文件读写NSDate，寻找指定的目录。
+
 ## 重新审视 Expo
 >
 > 最近项目 没什么事情 可以做, 我去重新审视了一下 Expo 这个开发工具
