@@ -15,3 +15,7 @@
 # Chapter Table of Contents
 >
 > Go to document ./doc/keywords.md
+
+# Note ⚠️ the problem of file directory
+>
+> Since the projects created by Xcode are sub-git projects, after deleting its git, there is only one soft link left in the outer layer, which is not what we want, so I synced every change to src Please refer to the code here.
