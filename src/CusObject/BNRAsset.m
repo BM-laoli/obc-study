@@ -11,7 +11,11 @@
 
 - (NSString *)description
 {
-    return [NSString stringWithFormat:@"<%@: $%u>", self.lable, self.resaleValue];
+    if(self.holder){
+        return [NSString stringWithFormat:@"<%@: $%d, assgined to %@>",self.lable, self.resaleValue, self.holder];
+    }else{
+        return [NSString stringWithFormat:@"<%@L $%d,unsingd>",self.lable, self.resaleValue];
+    }
 }
 
 - (void)dealloc{

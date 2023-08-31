@@ -12,6 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 @interface BNRAsset : NSObject
 
 @property (nonatomic, copy) NSString *lable;
+@property (nonatomic,weak) BNREmployee *holder;
+//@property (nonatomic) BNREmployee *holder;
 @property (nonatomic) unsigned int resaleValue;
 
 @end
