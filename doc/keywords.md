@@ -100,6 +100,25 @@ description Method 和 %@ 转换是怎么回事
 
 写一个存在循环引用的例子, 强引用循环，小工具instruments，sleep， 弱引用，编码原则（父拥有子☑️ 🈲️ 子拥有父），弱引用的自动置零特征，( 手动引用计数和ARC的历史，内存管理的一个技巧是写代码的时候就应该从局部考虑问题 理论知识)
 
+### Collection
+
+=> NSArray NSMutableArray , NSSet/NSMutableSet , NSDictionary/NSMutableDictionary
+数据结构Set的特征，
+数据结构Dictionary 的特征
+两个对象是否相等 isEqual
+相同的 != 相等的， == 运算是检测 是否相同
+NSNutableArray 中的indexOfObject 和indexOfObjectIdenticalTo, 是有区别的，
+嵌套的collection是被允许的
+为什么要添加不可变的对象?
+可变对象和不可变对象copy语法得到的结果是不一样的
+collection的Sort method
+collection的filter method
+关于collection的所有权的问题
+C语言的基本类型
+nil 不能存 但是 NSNULL 可以
+
+练习略
+
 ## 重新审视 Expo
 >
 > 最近项目 没什么事情 可以做, 我去重新审视了一下 Expo 这个开发工具

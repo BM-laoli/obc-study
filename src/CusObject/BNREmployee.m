@@ -11,7 +11,7 @@
 
 @interface BNREmployee()
 {
-    NSMutableArray *_assets;
+    NSMutableSet *_assets;
 }
 @property (nonatomic) unsigned int officeAlarmCode;
 @end
@@ -31,7 +31,7 @@
 - (void)addAssets:(BNRAsset *)a
 {
     if(!_assets){
-        _assets = [[NSMutableArray alloc]init];
+        _assets = [[NSMutableSet alloc]init];
     }
     
     [_assets addObject:a];
