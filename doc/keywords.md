@@ -132,6 +132,12 @@ nil 不能存 但是 NSNULL 可以
 
 NSMutableStrin, wireToFile方法和 NSError，读取文件，. 文件读写NSDate，寻找指定的目录。
 
+### callback
+
+oc 中有四种途径能够实现 callback（目标-对象，delegate 辅助对象，通知Notification，block对象） , 运行循环，静态变量, 取消编译警告, 协议 和 deleget,
+什么时候该使用什么方式去处理event
+回调对象的所有权问题 和几个处理原则
+
 ## 重新审视 Expo
 >
 > 最近项目 没什么事情 可以做, 我去重新审视了一下 Expo 这个开发工具
