@@ -17,6 +17,17 @@
 
 - (void)zoneChange: (NSNotification *)note
 {
+    // 注意管理内存强弱引用的问题
+    // 使用self
+    void (^myBlocks)(void);
+    __weak BNRLogger *weakSelf = self;
+    myBlocks = ^{
+        // 局部强引用没问题 因为指针是blocck的 它会被释放掉
+        BNRLogger *innerSelf = weakSelf;
+        // 同样的 我们的原则是通过geeter setter 获取变量值 而不是 直接用！
+        NSLog(@"Self %@",innerSelf);
+    };
+
     NSLog(@"The System time zone change");
 }
 

@@ -138,6 +138,20 @@ oc 中有四种途径能够实现 callback（目标-对象，delegate 辅助对�
 什么时候该使用什么方式去处理event
 回调对象的所有权问题 和几个处理原则
 
+### Block对象
+
+block是程序中的一段代码
+如何声明一个block
+Array的一个以block 对象为参数的方法 enumerateObjectUsingBlock
+使用typedef 简化 block的定义实现
+block的返回值
+匿名的block
+block 使用外部变量
+block 对象中会无意使用self
+block 修改外部变量
+
+练习略
+
 ## 重新审视 Expo
 >
 > 最近项目 没什么事情 可以做, 我去重新审视了一下 Expo 这个开发工具
