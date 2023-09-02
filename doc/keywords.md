@@ -209,6 +209,14 @@ instanceType类型
 
 ### 再谈属性
 
+存取类型 readonly
+生命周期，它主要关注的存取方法和内存相关的话题assigned ,strong,weak,unsafe_unretained,copy
+深入聊聊copy有两种可变的和不可变的
+对象的拷贝，如果你自己的类要实现请确保它符合NSCopying协议
+**人们对和自己的想法相反的意见是听不进去的**
+复写由属性自带的getter 和setter 方法
+@synthesize 指令 mushroom 定义
+
 ### KVC
 
 ### KVO
