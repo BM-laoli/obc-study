@@ -228,7 +228,14 @@ KyeString很重要
 
 ### KVO
 
+key value observing 值变化的时候 允许接到通知
+关于父类的observing 传递context指针
+显式触发通知 willChangeValueForKey , didChangeValueKey
+独立的属性
+
 ### 范畴
+
+//这个主要是程序员给已有的类添加方法
 
 ## 重新审视 Expo
 >

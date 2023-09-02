@@ -72,7 +72,18 @@
 - (void) updateLastTime: (NSTimer *)t
 {
     NSDate *now = [NSDate date];
-    [self setLastTime:now];
-    NSLog(@"Just set time to %@", self.lastTimeString);
+    // 由于某些原因 不是用getter setter 就可以使用 willChangeValueForKey , didChangeValueKey
+    // [self setLastTime:now];
+    [self willChangeValueForKey:@"lastTime"];
+    _lastTime = now;
+    [self didChangeValueForKey:@"lastTime"];
+    
+    // NSLog(@"Just set time to %@", self.lastTimeString);
+}
+
+// KVO
++ (NSSet *)keyPathsForValuesAffectingLastTimeString
+{
+    return [NSSet setWithObject:@"lastTime"];
 }
 @end
