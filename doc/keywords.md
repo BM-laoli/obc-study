@@ -193,6 +193,28 @@ interface builder 用法
 > interface builder 的用法还需要研究一下🧐一下才行 bug 还有 addTask 之后无法保存 New Item 也无法双击编辑
 > 暂时不知道什么毛病
 
+## OC高级话题
+
+### init 方法
+
+初始化实例变量
+默认执行0 和nil
+覆盖init方法实现不同的初始化值需求
+instanceType类型
+一些标准做法（预检查）
+带实际参（构造函数？）initWithXXXXX ，如何追加复写到init 里？
+关于写init的时的代码风格问题
+多个初始化方法（特别是有继承关系的时候要多加小心）初始化方法调用链图
+禁用init方法
+
+### 再谈属性
+
+### KVC
+
+### KVO
+
+### 范畴
+
 ## 重新审视 Expo
 >
 > 最近项目 没什么事情 可以做, 我去重新审视了一下 Expo 这个开发工具
