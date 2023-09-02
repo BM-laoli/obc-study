@@ -219,6 +219,13 @@ instanceType类型
 
 ### KVC
 
+KVC能够直接通过名称直接读取属性,
+写法对比 setValue:forKey
+为什么需要使用KVC（管理自定义数据对象）KVC是一个例外 直接获取数据
+非对象类型
+valueForKeyPath 获取key路径
+KyeString很重要
+
 ### KVO
 
 ### 范畴
