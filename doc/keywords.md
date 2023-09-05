@@ -310,6 +310,16 @@ NSString = [NSString stringWithCString:s encoding: NSUTF8StringEncoding];
 
 ```
 
+### C语言中的Array
+>
+> c语言的数组管理的不是某种特定的数据结构，它管理的内存，一块连续的带有启始标识的连续存储空间。
+
+malloc在堆中创建一块内存空间
+free释放这块内存空间
+也可以使用 string literal 的风格取定义Array
+
+练习略
+
 ## 重新审视 Expo
 >
 > 最近项目 没什么事情 可以做, 我去重新审视了一下 Expo 这个开发工具
