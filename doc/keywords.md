@@ -306,7 +306,7 @@ if([s canBeConvertedToEncoding: NSUTF8StringEncoding]) {
 // char -> NSString
 char *s = "Hello";
 NSString = [NSString stringWithCString:s encoding: NSUTF8StringEncoding];
-
+ 
 
 ```
 
@@ -319,6 +319,16 @@ free释放这块内存空间
 也可以使用 string literal 的风格取定义Array
 
 练习略
+
+### 命令行参数
+>
+> 我们需要使用命令行传递参数的时候 就需要用到这个东西
+
+基于命令会的Tools 需要 Product -> Archive 一下 生产一个 二进制的可执行文件
+
+main 函数的两个参数 argc 和 argv[] 命令行参数就在这里 argc是 argv的长度
+
+使用Xcode来进行测试用例编写的运行
 
 ## 重新审视 Expo
 >
