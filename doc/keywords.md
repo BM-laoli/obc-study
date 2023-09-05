@@ -280,6 +280,36 @@ enum {
 
 练习略
 
+### char
+
+C语言中string 是char 类型 OC中是NSString 类型，有时候OC 调C的时候需要传入Char类型而不是NSString 所以你需要了解它
+
+一个字节的数据可以当作字符来处理 ，字符串可以有多种不同的编码格式。最常用的默认编码格式为ASCII 码
+
+(复习一下 *是指针类型 &是取内存地址 运算符)
+char* ，C字符串就是内存中的一组相邻的字符 通常以 0x00 结束 例如
+0x4c 0x6f 0x76 0x65 0x00
+L    o     v    e    \0
+创建的char * 的方式
+
+字面量的方式创建 string literal
+C中的char 和NSString 之间的相互转换
+
+```objective-c
+// NSString -> char
+NSString *s = "Hello";
+const char *x = NULL;
+if([s canBeConvertedToEncoding: NSUTF8StringEncoding]) {
+  x  = [s cStringUsingEncoding: NSUTF8StringEncoding]
+}
+
+// char -> NSString
+char *s = "Hello";
+NSString = [NSString stringWithCString:s encoding: NSUTF8StringEncoding];
+
+
+```
+
 ## 重新审视 Expo
 >
 > 最近项目 没什么事情 可以做, 我去重新审视了一下 Expo 这个开发工具
