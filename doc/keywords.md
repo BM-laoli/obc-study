@@ -330,6 +330,46 @@ main 函数的两个参数 argc 和 argv[] 命令行参数就在这里 argc是 a
 
 使用Xcode来进行测试用例编写的运行
 
+### Switch语句
+>
+> 在一些命令行工具中 非常常见的就是各种switch 比如sqllite 这个C 开源项目就是
+
+```c
+int yeastType=2;
+
+switch (yeastType){
+  case 1:
+    makeBeard();
+    doXXX();
+    //...
+  case 2:
+    // ...
+  default:
+    //,,,,
+  break;
+}
+```
+
+### OC的运行时runtime
+
+内省:
+  这个东西有点类似 “反射” 在运行时runtime的程序控制
+动态查找并执行
+  比如说一个oc 的一个function调用，实际上编译之后 会底层会去执行 C函数 objc_msgSend()
+
+```c
+NSString *nameStr = @"Abs";
+NSString *capsName = [nameStr uppercaseString];
+
+-> 编译器看到的
+#import <objc/message.h>
+NSString *capsName = objc_msgSend(nameStr, @selector(uppercaseString));
+```
+
+类继承：
+KVO原理：
+主要是通过在运行时改变和复写isa指针实现的
+
 ## 重新审视 Expo
 >
 > 最近项目 没什么事情 可以做, 我去重新审视了一下 Expo 这个开发工具
