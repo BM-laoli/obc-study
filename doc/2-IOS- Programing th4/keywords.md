@@ -1,5 +1,6 @@
 **《IOS编程 第四版》**
 > 注意⚠️ 本项目中的部分场景，我结合了 Xcode 12 ，以构建IOS 13 以上的App 为目标（结合目前的IOS UIKit文档做说明），所以和书里面还是有点不一样的
+> 注意 本书默认你已经学会了OC ，其中的OC知识点我们不会过多介绍，仅仅给出代码示例 介绍一些核心部分，基础的OC我们将直接略过
 
 # 打通流程第一个IOS应用
 >
@@ -196,6 +197,76 @@ LaunchScreen 有些不同
 
 # Objective C语法复习
 
+对象我们一般都是使用 指针变量 获取 （*）,一般的写法如下
+
+## 对象和使用对象
+
+```c
+Party *p = [[Party alloc]init];
+// 这种写法 又叫做 嵌套消息发送 nested message send
+
+// 如果你不需要这个东西了 你应该释放它的内存
+*p  = nil;
+```
+
+## 一个命令行Tools
+
+它会循环一个Array 里面的string ，然后依次输出 具体的代码如下
+
+```Objective-C
+int main(int argc, const char * argv[]) {
+    @autoreleasepool {
+        NSMutableArray *arr = [NSMutableArray array];
+        [arr addObject:@"One"];
+        [arr addObject:@"Tow"];
+        [arr addObject:@"Thired"];
+        [arr insertObject:@"Zero" atIndex:0];
+        
+        for(NSString *item in arr){
+            NSLog(@"Arris %@ \n",item);
+        }
+        arr = nil;
+        
+    }
+    return 0;
+}
+```
+
+## 子类
+
+这里我们列出文章的核心关键知识点, 子类的定义和使用，实例变量,getter setter, 属性, init方法, overview复写description方法(@的调用输出)
+
+## NSArray NSMutableArray
+
+OC中的Array 可以存储不同的对象。它只保存指针而不关心类型 ，也就是说NULL 无法存入Array 而 [NSNull null] 就可以
+
 # 通过ARC 管理内存
 
-# 试图和试图的层次结构
+内存管理的特性：指的是 @propertry(nonatomic, weak | strong | copy | unsafe_unretained) ，不是指针额属性可以使用unsafe_unretained 也经常写作assign（同时它也是默认值）
+@propertry(nonatomic) int a; 啥都不写它 默认就是unsafe_unretained 的
+对于指针类型的 默认是strong @propertry(nonatomic) NSString *a; 默认就是strong
+weak是处理强引用引起的循环引用问题
+对于某些对象又可修改的子类的时候 应该使用copy 比如NSString 就有 NSMutableString, NSArray 就有 NSMutableArray ,它们就应该使用copy
+观察下面的代码
+
+```c
+_itemName = [itemName copy];
+// 向itemName发出copy msg 返回一个新的NSString对象(原来itemName 上的值都在 不过是在新的对象上)，而不是返回NSMutaleString 确保对象上NSString 而不是NSMutableString
+```
+
+属性合成: 与指令 @synthesized 有关
+有时候我们定义了属性 但是又想自定义它的getter 和seeter 这个时候 就需要需要用 @synthesized 指令了
+
+```c
+@implementation Person
+
+// 下面的指令有三个意思 1创建了存方法 2 创建了取方法 3.实例变量上_age
+@synthesized age=_age;
+// 也可以这样写 那么含义就变了哈 1创建了存方法 2 创建了取方法 3.实例变量是age
+@synthesized age;
+
+// 当然你也可以直接覆盖 getter 和setter 而不是用什么复杂的synthesized....
+@end
+```
+
+# 和试图的层次结构
