@@ -2,6 +2,8 @@
 > 注意⚠️ 本项目中的部分场景，我结合了 Xcode 12 ，以构建IOS 13 以上的App 为目标（结合目前的IOS UIKit文档做说明），所以和书里面还是有点不一样的
 > 注意 本书默认你已经学会了OC ，其中的OC知识点我们不会过多介绍，仅仅给出代码示例 介绍一些核心部分，基础的OC我们将直接略过
 
+相关的文档 [Apple 简体中文](https://developer.apple.com/cn/documentation/) (建议直接英文真的)
+
 # 打通流程第一个IOS应用
 >
 > 由于目前 Xcode12 之后的项目创建的默认模板的选项中，interface 可选 StoryBoard，SwiftUI，Language 可选的有 OC 和Swift. 这就与书中的不一样的了，我在这里使用 StoryBoard + OC 去创建
@@ -269,4 +271,14 @@ _itemName = [itemName copy];
 @end
 ```
 
-# 和试图的层次结构
+# 视图结构和层次
+
+IOS 13 之后 应用外面是UIScreen 然后是UIWindow ，接下来就是各种 UIWindow 的subView了
+视图是UIView对象 它要绘制自己 处理事件
+UIView 的frame 属性它保存View的大小和 相对父视图的位置, CGRect结构(没错就是C语言中的结构)  注意啊它的 x y w h 中的xy是相对于它的父亲的xy 哈
+构建以一个自定义的UIView 然后捋清楚它们的层次结构
+UIView中的drawRect方法(frame 属性和 bounds 属性) 尝试吧window的bounds的大小给View的frame
+绘制圆形⭕️
+  计算中心点
+  计算一个半径
+  UIBezierPath 类的文档和官方说明手册

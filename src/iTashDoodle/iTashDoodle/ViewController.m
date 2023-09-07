@@ -35,7 +35,7 @@ NSString *ViewControllerDocPath(void)
     return  cell;
 }
 
-#pragma deleaget事件
+#pragma mark deleaget事件
 -(void)addTask:(id)sener
 {
     NSString *text  = [self.taskField text];
