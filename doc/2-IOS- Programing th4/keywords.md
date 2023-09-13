@@ -4,6 +4,8 @@
 
 相关的文档 [Apple 简体中文](https://developer.apple.com/cn/documentation/) (建议直接英文真的)
 
+这本书中的课后练习由三个层次 分别是 入门，深入，高级，我在这里不会线性取实现，而是学习整本书之后再回来实现
+
 # 打通流程第一个IOS应用
 >
 > 由于目前 Xcode12 之后的项目创建的默认模板的选项中，interface 可选 StoryBoard，SwiftUI，Language 可选的有 OC 和Swift. 这就与书中的不一样的了，我在这里使用 StoryBoard + OC 去创建
@@ -282,3 +284,19 @@ UIView中的drawRect方法(frame 属性和 bounds 属性) 尝试吧window的boun
   计算中心点
   计算一个半径
   UIBezierPath 类的文档和官方说明手册
+
+深入学习: Core Graphics
+  UIKit中很多的2D绘制 都是由基于C的绘图lib Core Graphics 实现的，UIBezierPath只是封装了一下
+高级练习：阴影和渐变
+
+# UIScrollView
+
+什么时候把定义写在 h 什么时候把 定义写在 类扩展？（因为如果要做私有属性什么之类的 就必须使用类扩展 这是一个良好的习惯）
+touchesBegan:withEvent 消息, 随机数
+运行循环会重回视图（runloop)
+setNeedsDispaly-msg
+某些UI组件会打算一种要重渲染的标记，而UIView的自定义类就需要自己发送setNeedsDispaly-msg 重绘
+重绘某些区域
+UIScrollView 适用大屏幕 需要滚动的 内容展示，UIScrollView是“镜头” 子视图是“景观”，当我们移动的时候是移动镜头而不是 景观
+捏合缩放 Pinch-to-zoom
+拖动和分页

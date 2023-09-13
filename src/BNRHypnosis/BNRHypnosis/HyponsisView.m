@@ -7,6 +7,12 @@
 
 #import "HyponsisView.h"
 
+@interface HyponsisView ()
+
+@property(strong, nonatomic) UIColor *circleColor;
+
+@end
+
 @implementation HyponsisView
 
 /*
@@ -56,11 +62,29 @@
     
     // 改变线条粗细
     path.lineWidth = 10;
-    [[UIColor lightGrayColor] setStroke];
+    [self.circleColor setStroke];
     
     
     // 绘制上去
     [path stroke];
+}
+
+- (void)  touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
+{
+    float red = (arc4random() %100 ) / 100.0;
+    float green = (arc4random() %100 ) / 100.0;
+    float blue = (arc4random() %100 ) / 100.0;
+    
+    UIColor *randomColor = [UIColor colorWithRed:red green:green blue:blue alpha:1.0];
+    
+    self.circleColor = randomColor;
+}
+
+- (void)setCircleColor:(UIColor *)circleColor
+{
+    // 在自定义属性内 属性都是 加_ 做前缀
+    _circleColor = circleColor;
+    [self setNeedsDisplay];
 }
 
 - (instancetype)initWithFrame:(CGRect)frame
@@ -68,6 +92,7 @@
     self = [super initWithFrame:frame];
     if(self){
         self.backgroundColor = [UIColor clearColor];
+        self.circleColor = [UIColor lightGrayColor];
     }
     return  self;
 }
