@@ -10,9 +10,10 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface BNRHypnosisViewController : UIViewController;
+@interface BNRHypnosisViewController : UIViewController<UITextFieldDelegate>;
+@property(nullable, nonatomic,weak)   id<UITextFieldDelegate> delegate;
+@property(nonatomic, weak) UITextField *textFiled1;
 @property (nonatomic, strong) UIView *view;
-
 @end
 
 NS_ASSUME_NONNULL_END

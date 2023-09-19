@@ -302,6 +302,7 @@ UIScrollView 适用大屏幕 需要滚动的 内容展示，UIScrollView是“�
 拖动和分页
 
 # ViewController 试图控制器
+
 题外话我们先说说 截至目前2023/09/15 之后的几种 Interface Builder （Storyboard, NIB, SwiftUI 可以问 ChatGPT
 一个UIViewController 的子类 用来控制 一个/多个 view的控制器。
 rootViewController, 
@@ -389,5 +390,78 @@ UITableBarController
             NSLog(@"本地通知已添加");
         }
     }];
-    
 ```
+
+# 委托和文本输入
+文本输入框 UITextField,
+关于键盘弹出的操作,
+UIResponder,becomeFirstResponder 和 resignFirstResponder 方法。
+
+修改键盘的类型，
+一些关于 UITextField 的简单属性介绍，
+在IOS开发中的设计模式之 Delegate 模式，之前还写过Target- Action模式 (在Quiz应用中)，
+简单点说就是 UITextField 上有一个属性被叫做委托属性，设置成一个其他的对象那么就能够在对应的callback中触发，
+
+协议 protocol （其实就是 java 中的 interface类似的概念），
+如何编写自己的协议? protocol，
+协议是如何运作的 （预检，
+
+运动效果？和传感器 UIInterpolatingMotionEffect类 (视差效果)
+
+使用调试器，几个重要的调试按钮 继续道下一个断点, 单步执行, 跳入方法, 跳出方法，设置异常断点，
+视图层级调试器
+
+![Alt text](./assets/XCode%2014%20%E7%9A%84%20%E8%B0%83%E8%AF%95%E5%99%A8.jpg)
+
+main function and UIApplication function
+
+## 与书上的不同
+1. 不能直接用 self.delegate 和 textFiled，你需要设置独立的属性  
+```C#
+
+@interface BNRHypnosisViewController : UIViewController<UITextFieldDelegate>;
+@property(nullable, nonatomic,weak)   id<UITextFieldDelegate> delegate;
+@property(nonatomic, weak) UITextField *textFiled1;
+@property (nonatomic, strong) UIView *view;
+@end
+
+- (void)loadView
+{
+    ....
+    textField.delegate = self;
+    self.textFiled1 = textField;
+    ....
+    
+}
+
+-(void)cleanButtonTapped
+{
+    SEL clearSelector = @selector(textFieldShouldClear:);
+    if ([self.delegate respondsToSelector:clearSelector]) {
+        if([self.delegate textFieldShouldClear: self.textFiled1]) {
+            self.textFiled1.text = @"";
+        }
+    } else {
+        // 委托对象为 nil，采取适当的备选措施
+    }
+}
+```
+
+如果有多个 输入框 但是都实现了 delegate 那么 继续要在 事件中 单独判断了,由视图控制器类实现了 UITextFieldDelegate 协议，你只需要一次实现相关的委托方法。在委托方法内部，你可以根据触发事件的具体文本字段来判断应该执行哪些操作。
+```c#
+// 在委托方法中检查哪个文本字段触发了事件
+- (BOOL)textFieldShouldClear:(UITextField *)textField {
+    if (textField == self.textField1) {
+        // 处理第一个文本字段的清除事件
+    } else if (textField == self.textField2) {
+        // 处理第二个文本字段的清除事件
+    }
+
+    return YES; // 返回 YES 表示允许清除操作
+}
+```
+
+关于视差和陀螺仪话题，由于模拟器 不支持 所以先不搞  https://developer.apple.com/documentation/xcode/testing-in-simulator-versus-testing-on-hardware-devices/ 中搜索 关键字 Simulator doesn’t support the following hardware:
+
+run到真机 无论如何都需要 证书，如何设置请参考 https://zhuanlan.zhihu.com/p/148864704
+
