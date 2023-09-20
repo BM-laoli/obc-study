@@ -305,36 +305,40 @@ UIScrollView 适用大屏幕 需要滚动的 内容展示，UIScrollView是“�
 
 题外话我们先说说 截至目前2023/09/15 之后的几种 Interface Builder （Storyboard, NIB, SwiftUI 可以问 ChatGPT
 一个UIViewController 的子类 用来控制 一个/多个 view的控制器。
-rootViewController, 
+rootViewController,
 IOS13 之后的 rootViewController 如何运行的？在截至2023/09/15 Xcode14 创建的工程，会自动给你生成一个 Main NIB 并且绑定上一个ViewController
-如果你需要自定义rootView 以及rootViewController 的话 可以删除掉它 
-比如 我这里初始化HypnoNerd 项目就删除了这些东西，这样它就仅仅是一个空的结构了，当然多Screen还存在不需要管它, 
+如果你需要自定义rootView 以及rootViewController 的话 可以删除掉它
+比如 我这里初始化HypnoNerd 项目就删除了这些东西，这样它就仅仅是一个空的结构了，当然多Screen还存在不需要管它,
 ![Alt text](./assets/6-视图控制器.jpg)
 
 设置两个ViewController
 笔需要再次强调 IBOutlet IBAction 是给NIB 用的属性和方法 （一般设置为弱应用 节约内存）
 注意层次结构 UIView 包含 其他subView  比如Button Label等，对于这个结构来说 UIView就是这个结构的rootView它可以连接上一个ViewController管理其他子view
 在最新的XCode中，我们不需要 initWithNibName 去设置了 直接可视化拖拽就好了。
-UITableBarController 
-  - 保存一组ViewController
-  - ViewController 的初始化方法 关于同名的NIB问题
-  - 添加本地通知功能 Local 的 notification （除此外其他的message的notification 是push notification 需要符合IOS的规范) 
-  - 关于延时加载
-  - 视图载入前 如何访问 视图（两个生命周期函数）
-  - 关于过度动画
-  - 列举所有的ViewController 相关的 lifecycle method
+UITableBarController
+
+- 保存一组ViewController
+- ViewController 的初始化方法 关于同名的NIB问题
+- 添加本地通知功能 Local 的 notification （除此外其他的message的notification 是push notification 需要符合IOS的规范)
+- 关于延时加载
+- 视图载入前 如何访问 视图（两个生命周期函数）
+- 关于过度动画
+- 列举所有的ViewController 相关的 lifecycle method
 
 相关的练习
- - 新增一个标签项目 加入之前的QA View
- - 加入一个分段器 控制 颜色 ，而不是惦记屏幕就改变颜色
- - NIB中的变量和KVC （命名的规范问题）
+
+- 新增一个标签项目 加入之前的QA View
+- 加入一个分段器 控制 颜色 ，而不是惦记屏幕就改变颜色
+- NIB中的变量和KVC （命名的规范问题）
 
  关于@2x 当然是@2x 啦( 当然我是指 你曾经学习过前端 那么 “多倍图” 你应该是了解的！)
 
 和书本上操作的不同的地方
+
 1. 当然是删除多余的 stroybarod 了 注意要把相关的Main.stroybarod 删除干净
 2. 直接在在scene 中 指定 rootViewController
 3. 我们不需要去动AppDeletage的东西
+
 ```c#
 - (void)scene:(UIScene *)scene willConnectToSession:(UISceneSession *)session options:(UISceneConnectionOptions *)connectionOptions {
     // setRootViewController
@@ -360,6 +364,7 @@ UITableBarController
 ```
 
 另外还有一点需要注意，由于SDK 的更新， 在创建 LocalNotification 时 区别比较大所以我直接给出最新版本 IOS16 的代码
+
 ```c#
 
     NSDate *date = self.dataPicker.date;
@@ -393,6 +398,7 @@ UITableBarController
 ```
 
 # 委托和文本输入
+
 文本输入框 UITextField,
 关于键盘弹出的操作,
 UIResponder,becomeFirstResponder 和 resignFirstResponder 方法。
@@ -416,7 +422,9 @@ UIResponder,becomeFirstResponder 和 resignFirstResponder 方法。
 main function and UIApplication function
 
 ## 与书上的不同
+
 1. 不能直接用 self.delegate 和 textFiled，你需要设置独立的属性  
+
 ```C#
 
 @interface BNRHypnosisViewController : UIViewController<UITextFieldDelegate>;
@@ -448,6 +456,7 @@ main function and UIApplication function
 ```
 
 如果有多个 输入框 但是都实现了 delegate 那么 继续要在 事件中 单独判断了,由视图控制器类实现了 UITextFieldDelegate 协议，你只需要一次实现相关的委托方法。在委托方法内部，你可以根据触发事件的具体文本字段来判断应该执行哪些操作。
+
 ```c#
 // 在委托方法中检查哪个文本字段触发了事件
 - (BOOL)textFieldShouldClear:(UITextField *)textField {
@@ -461,7 +470,22 @@ main function and UIApplication function
 }
 ```
 
-关于视差和陀螺仪话题，由于模拟器 不支持 所以先不搞  https://developer.apple.com/documentation/xcode/testing-in-simulator-versus-testing-on-hardware-devices/ 中搜索 关键字 Simulator doesn’t support the following hardware:
+关于视差和陀螺仪话题，由于模拟器 不支持 所以先不搞  <https://developer.apple.com/documentation/xcode/testing-in-simulator-versus-testing-on-hardware-devices/> 中搜索 关键字 Simulator doesn’t support the following hardware:
 
-run到真机 无论如何都需要 证书，如何设置请参考 https://zhuanlan.zhihu.com/p/148864704
+run到真机 无论如何都需要 证书，如何设置请参考 <https://zhuanlan.zhihu.com/p/148864704>
 
+# UITableView & UITableViewController
+
+MVC 是开发IOS 应用 需要遵守的设计模式和方法,
+UITableView 在MVC下的三种角色 ，都可以由 UITableViewController 充当,
+initWithStyle,
+设置UITableView的内容, 面向过程 和 面向对象,
+一个简单的对象图,
+关于单例，静态变量,
+向内的read and write 向外的只有 readyonely 如何实现这样的coding 原则，
+实现了UITableViewDataSource 协议后，必须实现的两个方法，
+UITableViewCell 类，
+性能问题，
+代码片段库 在Xcode14 之后 请在 Edit 拉到最下面 create code snipes 就可以看到。
+
+相关的练习，显示两个表格段，练习一个固定行，修改UITabView的外观
