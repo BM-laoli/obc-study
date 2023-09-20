@@ -489,3 +489,19 @@ UITableViewCell 类，
 代码片段库 在Xcode14 之后 请在 Edit 拉到最下面 create code snipes 就可以看到。为了方便我的使用  我把 screenDelegate中 rootView的设置放了进去. 注意要把信息都填完 才可以生效
 
 相关的练习，显示两个表格段，练习一个固定行，修改UITabView的外观
+
+# 编辑UITableView
+对tabView 的CURD 操作，
+UITabView上的 editing 属性 ，两种类型的表格(表 头尾，cell 头尾)，
+NIB(后续还是称为XIB吧 它们都是同一个但是书里面大多地方都称呼其为XIB) 与 Code结合起来如何用？
+模拟的ViewController 与同名的XIB 的加载源代码逻辑是如何的？
+增加行数据，视图的责任是吧model中的data 给用户，只更新视图 不更新model数据会有问题，因为数据不一致，
+删除行，NSMutableArray 的 removeObjectIdenticalTo: 和 removeObject: 不一样哈 前者只比较指针，后者既要比较指针还要比较各种值，
+数据变化时callback到 dataSource Delegate,
+移动, dataSource delegate 上的 moveRowAtIndexPath,
+
+## 与书上的不同
+如何更改XIB的大小，在Xcode14 中请选择 下面的配置
+  - Size -> FreeForm,
+  - Top Bar -> None,
+  - Bottom Bar -> None,

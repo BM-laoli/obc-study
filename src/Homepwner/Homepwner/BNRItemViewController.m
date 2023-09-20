@@ -9,6 +9,11 @@
 #import "BNRItemStore.h"
 #import "BNRItem.h"
 
+@interface BNRItemViewController()
+@property (nonatomic,strong) IBOutlet UIView *headerView;
+@end
+
+
 @implementation BNRItemViewController
 
 - (void)viewDidLoad
@@ -17,6 +22,9 @@
 
     [self.tableView registerClass:[UITableViewCell class]
            forCellReuseIdentifier:@"UITableViewCell"];
+    
+    UIView *header = self.headerView;
+    [self.tableView setTableHeaderView:header];
 }
 
 - (instancetype)initWithStyle:(UITableViewStyle)style
@@ -58,4 +66,59 @@
     return cell;
 }
 
+- (UIView *)headerView
+{
+    if(!_headerView) {
+        [[NSBundle mainBundle]loadNibNamed:@"HeaderView" owner:self options:nil];
+    }
+    return _headerView;
+}
+
+- (IBAction)addNewItem:(id)sender
+{
+    // 这里不仅仅要处理View 上的dataSource Delegate 还有处理 Mode(BNRItemStore)
+    // createItem 这里会自动的给Model里加一项
+    BNRItem *newItem = [[BNRItemStore sharedStore]createItem];
+    
+    // 获取最后一项 item的索引
+    NSInteger lasRow = [[[BNRItemStore sharedStore] allItems]indexOfObject:newItem];
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:lasRow inSection:0];
+    
+    // 重写设置回去
+    [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationTop];
+    
+}
+
+- (IBAction)toggleEditingModel:(id)sender
+{
+ if(self.isEditing)
+ {
+     [sender setTitle:@"Edit" forState:UIControlStateNormal];
+     
+     [self setEditing:NO animated:YES];
+ }else {
+     [sender setTitle:@"Done" forState:UIControlStateNormal];
+     
+     [self setEditing:YES animated:YES];
+ }
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    // dataSoucre delegate 上 delete 的callback
+    if(editingStyle == UITableViewCellEditingStyleDelete)
+    {
+        NSArray *items = [[BNRItemStore sharedStore]allItems];
+        BNRItem *item = items[indexPath.row];
+        [[BNRItemStore sharedStore]removeItem:item];
+        
+        // 删除表格中的动画
+        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+    }
+}
+
+- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath toIndexPath:(NSIndexPath *)destinationIndexPath
+{
+    [[BNRItemStore sharedStore] moveItemAtIdex:sourceIndexPath.row toIndex:destinationIndexPath.row];
+}
 @end

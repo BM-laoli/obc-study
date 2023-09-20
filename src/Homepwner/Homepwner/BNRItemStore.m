@@ -64,4 +64,21 @@
     return item;
 }
 
+- (void)removeItem:(BNRItem *)item
+{
+    [self.privateItems removeObjectIdenticalTo:item];
+}
+
+- (void)moveItemAtIdex:(NSUInteger)fromIdex toIndex:(NSUInteger)toIndex
+{
+    if(fromIdex == toIndex) {
+        return;
+    }
+    
+    // 先删除存一个，把原来的删除，再塞回去
+    BNRItem *item = self.privateItems[fromIdex];
+    [self.privateItems removeObjectAtIndex:fromIdex];
+    [self.privateItems insertObject:item atIndex:toIndex];
+    
+}
 @end

@@ -18,6 +18,7 @@
 		1C3955462ABB0E47000B40EC /* BNRItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C3955452ABB0E47000B40EC /* BNRItemViewController.m */; };
 		1C39554B2ABB0FA3000B40EC /* BNRItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C3955482ABB0FA2000B40EC /* BNRItem.m */; };
 		1C39554C2ABB0FA3000B40EC /* BNRItemStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C3955492ABB0FA2000B40EC /* BNRItemStore.m */; };
+		1C3955502ABB32F0000B40EC /* HeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1C39554F2ABB32F0000B40EC /* HeaderView.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +59,7 @@
 		1C3955482ABB0FA2000B40EC /* BNRItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNRItem.m; sourceTree = "<group>"; };
 		1C3955492ABB0FA2000B40EC /* BNRItemStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNRItemStore.m; sourceTree = "<group>"; };
 		1C39554A2ABB0FA3000B40EC /* BNRItemStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNRItemStore.h; sourceTree = "<group>"; };
+		1C39554F2ABB32F0000B40EC /* HeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HeaderView.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,6 +121,7 @@
 				1C39554A2ABB0FA3000B40EC /* BNRItemStore.h */,
 				1C3955492ABB0FA2000B40EC /* BNRItemStore.m */,
 				1C39551B2ABB0E09000B40EC /* Assets.xcassets */,
+				1C39554F2ABB32F0000B40EC /* HeaderView.xib */,
 				1C39551D2ABB0E09000B40EC /* LaunchScreen.storyboard */,
 				1C3955202ABB0E09000B40EC /* Info.plist */,
 				1C3955212ABB0E09000B40EC /* main.m */,
@@ -246,6 +249,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1C3955502ABB32F0000B40EC /* HeaderView.xib in Resources */,
 				1C39551F2ABB0E09000B40EC /* LaunchScreen.storyboard in Resources */,
 				1C39551C2ABB0E09000B40EC /* Assets.xcassets in Resources */,
 			);
