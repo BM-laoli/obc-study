@@ -486,6 +486,6 @@ initWithStyle,
 实现了UITableViewDataSource 协议后，必须实现的两个方法，
 UITableViewCell 类，
 性能问题，
-代码片段库 在Xcode14 之后 请在 Edit 拉到最下面 create code snipes 就可以看到。
+代码片段库 在Xcode14 之后 请在 Edit 拉到最下面 create code snipes 就可以看到。为了方便我的使用  我把 screenDelegate中 rootView的设置放了进去. 注意要把信息都填完 才可以生效
 
 相关的练习，显示两个表格段，练习一个固定行，修改UITabView的外观

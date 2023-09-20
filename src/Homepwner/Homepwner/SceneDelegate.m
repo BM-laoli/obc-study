@@ -2,7 +2,7 @@
 //  SceneDelegate.m
 //  Homepwner
 //
-//  Created by administrator on 2023/9/20.
+//  Created by 李仕增 on 2023/9/20.
 //
 
 #import "SceneDelegate.h"
@@ -14,26 +14,26 @@
 
 @implementation SceneDelegate
 
-
 - (void)scene:(UIScene *)scene willConnectToSession:(UISceneSession *)session options:(UISceneConnectionOptions *)connectionOptions {
-    // setRootViewController
-       UIWindowScene *windowScene = (UIWindowScene *)scene;
-       
-       // 创建一个 UIWindow，并为它设置场景
-       self.window = [[UIWindow alloc] initWithWindowScene:windowScene];
-        
+    
+        // setRootViewController
+        UIWindowScene *windowScene = (UIWindowScene *)scene;
+
+        // 创建一个 UIWindow，并为它设置场景
+        self.window = [[UIWindow alloc] initWithWindowScene:windowScene];
+
         BNRItemViewController *itemViewController = [[BNRItemViewController alloc]init];
 
-       // 将根视图控制器设置为窗口的根视图控制器
-       self.window.rootViewController = itemViewController;
-       
-       self.window.backgroundColor = [UIColor whiteColor];
+        // 将根视图控制器设置为窗口的根视图控制器
+        self.window.rootViewController = itemViewController;
 
-       // 设置窗口的大小和其他属性
-       self.window.frame = windowScene.coordinateSpace.bounds;
+        self.window.backgroundColor = [UIColor whiteColor];
 
-       // 将窗口设置为应用程序的主窗口并使其可见
-       [self.window makeKeyAndVisible];
+        // 设置窗口的大小和其他属性
+        self.window.frame = windowScene.coordinateSpace.bounds;
+
+        // 将窗口设置为应用程序的主窗口并使其可见
+        [self.window makeKeyAndVisible];
 }
 
 
