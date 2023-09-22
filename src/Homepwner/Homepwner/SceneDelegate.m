@@ -21,11 +21,16 @@
 
         // 创建一个 UIWindow，并为它设置场景
         self.window = [[UIWindow alloc] initWithWindowScene:windowScene];
-
+    
         BNRItemViewController *itemViewController = [[BNRItemViewController alloc]init];
+        
+    
+        // 添加一段 Navigation 代码
+    UINavigationController *navController = [[UINavigationController alloc]initWithRootViewController:itemViewController];
+    
 
         // 将根视图控制器设置为窗口的根视图控制器
-        self.window.rootViewController = itemViewController;
+        self.window.rootViewController = navController;
 
         self.window.backgroundColor = [UIColor whiteColor];
 

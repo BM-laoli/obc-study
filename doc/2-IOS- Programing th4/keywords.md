@@ -505,3 +505,22 @@ NIB(后续还是称为XIB吧 它们都是同一个但是书里面大多地方都
   - Size -> FreeForm,
   - Top Bar -> None,
   - Bottom Bar -> None,
+
+# UINavigationController
+栈形式的导, UINavigationController 的 RootViewController，行为和操作逻辑类似 UITabBarController 需要一个ControllerList，topViewController 代表当前，
+
+编写ios程序的时候 要把每个UIViewController当成独立的个体，
+
+创建第二个 额外的视图控制器,
+XIB 可以自动连接到 代码中去吗？答案是YES 可以的并且自带命名动作，
+（快捷键切换tab = command + shift 上下），
+
+UITabView和自己的交互如何实现, 从UITabView上点击，然后 UINavigation 切换 ，TabView如何获得 UINavigation的指针，
+不同topViewController之间如何获 UINavigation的指针, 并且在相关的地方进行切换和释放其他的viewController，
+对于Ipad来说由于屏幕大，操作逻辑有些不一样。
+不同的 UINavigationController 之间如何传递相关的数据，由根视图统一管理数据 是一个不错的选择，
+UIViewController 出栈 和入栈 时的分别CallBack调用，
+
+两个特殊的对象，UINavigationBar，UINavigationItem，UIBarButtonItem， 它们都不是UIView的子类，而是单独封装有特定功能的类，
+UINavigationBar 对象（如何设置NavigationBar的title等信息），不同的情况下 设置的方式也不一样的！。
+UINavigationItem 对象是什么，设置标题和其他属性，UINavigationBar  的两种显示模式，

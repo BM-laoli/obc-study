@@ -8,6 +8,7 @@
 #import "BNRItemViewController.h"
 #import "BNRItemStore.h"
 #import "BNRItem.h"
+#import "BNRDetailViewController.h"
 
 @interface BNRItemViewController()
 @property (nonatomic,strong) IBOutlet UIView *headerView;
@@ -36,9 +37,16 @@
 {
     self = [super initWithStyle:UITableViewStylePlain];
     if (self) {
-        for (int i =0; i<5; i++) {
-            [[BNRItemStore sharedStore] createItem];
-        }
+        UINavigationItem *navItem = self.navigationItem;
+        navItem.title = @"Homepwner";
+        
+        // 创建两个按钮
+        UIBarButtonItem *bbi = [[UIBarButtonItem alloc]
+                                initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
+                                target:self
+                                action:@selector(addNewItem:)];
+        navItem.rightBarButtonItem = bbi;
+        navItem.leftBarButtonItem = self.editButtonItem;
     }
     return self;
 }
@@ -66,13 +74,13 @@
     return cell;
 }
 
-- (UIView *)headerView
-{
-    if(!_headerView) {
-        [[NSBundle mainBundle]loadNibNamed:@"HeaderView" owner:self options:nil];
-    }
-    return _headerView;
-}
+//- (UIView *)headerView
+//{
+//    if(!_headerView) {
+//        [[NSBundle mainBundle]loadNibNamed:@"HeaderView" owner:self options:nil];
+//    }
+//    return _headerView;
+//}
 
 - (IBAction)addNewItem:(id)sender
 {
@@ -120,5 +128,22 @@
 - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath toIndexPath:(NSIndexPath *)destinationIndexPath
 {
     [[BNRItemStore sharedStore] moveItemAtIdex:sourceIndexPath.row toIndex:destinationIndexPath.row];
+}
+
+// 点击的时候去进行一个导航
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    BNRDetailViewController *detailVC = [[BNRDetailViewController alloc]init];
+    NSArray *items = [[BNRItemStore sharedStore]allItems];
+    BNRItem *item = items[indexPath.row];
+    detailVC.item = item;
+    
+    [self.navigationController pushViewController:detailVC animated:YES];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear: animated];
+    [self.tableView reloadData];
 }
 @end
