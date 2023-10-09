@@ -20,4 +20,7 @@
 @property (nonatomic) int valueInDollars;
 @property (nonatomic, readonly, strong) NSDate *dateCreated;
 
+// 添加存储Image Key的属性
+@property (nonatomic, copy) NSString *itemKey;
+
 @end

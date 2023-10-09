@@ -524,3 +524,84 @@ UIViewController 出栈 和入栈 时的分别CallBack调用，
 两个特殊的对象，UINavigationBar，UINavigationItem，UIBarButtonItem， 它们都不是UIView的子类，而是单独封装有特定功能的类，
 UINavigationBar 对象（如何设置NavigationBar的title等信息），不同的情况下 设置的方式也不一样的！。
 UINavigationItem 对象是什么，设置标题和其他属性，UINavigationBar  的两种显示模式，
+
+# 相机Camera
+> 本章重点，我们来看看如何调用相机📷
+
+关于IOS13 之后的相册权限问题。
+UIImagePickerController, 额外的存储类 BNRImageStore ， UIImageView，展示模式自动缩放和自动裁切，自动化.
+自动拖放 自动更新到 类中生成与之对应的属性， UIToolBar，UIToolBar VS UINavigationBar的区别。Action事件 也可以通过拖拽的方式关联到Class中。
+UIImagePickerController 对象必要的sourceType和delegate属性。检查一下看看相机硬件是否存在，UIImagePickerController 的delegate的特殊性.
+UIImagePickerController 对象鱼ViewController 是不一样的它必须要用 模态窗modal展示，如何把这些选择好的Img 存储下来？存储到磁盘缓存中还是存储到内存中？NSDictionary的各种语法， Cocoa Touch 提供的UUID 生成器。为什么不直接对BNRItem 添加一个指向 UIImage的对象属性？
+关闭键盘，UIController ，导航实现文件，在实现文件中进行导航 #pragma mark 标记，摄像Video，
+
+## 与书上有些许出入的地方
+在调用相机或者相册前 我们首先需要处理权限问题  以下是一些代码（请求了相册权限和 相机权限）
+```C
+#import <Photos/Photos.h>
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    
+    // 检查照片权限
+    [self checkPhotoLibraryPermission];
+    [self checkAndRequestCameraPermission];
+}
+
+
+- (void)checkPhotoLibraryPermission {
+    PHAuthorizationStatus status = [PHPhotoLibrary authorizationStatus];
+        
+        if (status == PHAuthorizationStatusNotDetermined) {
+            // 如果权限尚未获得，请求权限
+            [PHPhotoLibrary requestAuthorization:^(PHAuthorizationStatus newStatus) {
+                if (newStatus == PHAuthorizationStatusAuthorized) {
+                    // 用户授予了照片库权限，您可以在这里执行其他操作
+                } else {
+                    // 用户拒绝了照片库权限，您可以在这里执行其他操作或提供反馈
+                }
+            }];
+        } else if (status == PHAuthorizationStatusAuthorized) {
+            // 用户已经授予了照片库权限，您可以在这里执行其他操作
+        } else {
+            // 用户拒绝或限制了照片库权限，您可以在这里执行其他操作或提供反馈
+        }
+}
+
+- (void)checkAndRequestCameraPermission {
+    AVAuthorizationStatus status = [AVCaptureDevice authorizationStatusForMediaType:AVMediaTypeVideo];
+    
+    if (status == AVAuthorizationStatusNotDetermined) {
+        // 如果权限尚未获得，请求权限
+        [AVCaptureDevice requestAccessForMediaType:AVMediaTypeVideo completionHandler:^(BOOL granted) {
+            if (granted) {
+                // 用户授予了相机权限，您可以在这里执行其他操作
+            } else {
+                // 用户拒绝了相机权限，您可以在这里执行其他操作或提供反馈
+            }
+        }];
+    } else if (status == AVAuthorizationStatusAuthorized) {
+        // 用户已经授予了相机权限，您可以在这里执行其他操作
+    } else {
+        // 用户拒绝或限制了相机权限，您可以在这里执行其他操作或提供反馈
+    }
+}
+
+```
+额外的我们还需要去 配置info.plist 
+```XML
++
+<key>NSCameraUsageDescription</key>
+<string>We need access to your camera to take photos and video.</string>
+<key>NSPhotoLibraryUsageDescription</key>
+<string>Request Photos</string>
++
+```
+
+注意以上仅仅是一个例子，我们为了配合书中使用 UIImagePickerController 所写的例子，实际上在 我们不写权限处理也是可以的，IOS11 之后会在你使用 UIImagePickerController 自动询问权限 （参考https://www.codenong.com/48826060/），我们写了权限处理 只是为了更好的表示在正常的项目中你最应该的做法
+
+当然现在通常在项目中的做法是使用 一个独立线程框架 PhotoKit，这里就不多说了 感兴趣的话请自行前往了解
+
+解决完权限问题之后再看其他的后续操作。
+
+# 关于MVVM在 OC中的实现和运用
+> 这一小节的内容是我 依据我的前端开发经验 加入的，旨在让IOS开发更加现代化, 我们将结合OC + RxSwift 完成一个简单的ToDoMVC demo
