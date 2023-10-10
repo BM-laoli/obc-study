@@ -525,7 +525,7 @@ UIViewController 出栈 和入栈 时的分别CallBack调用，
 UINavigationBar 对象（如何设置NavigationBar的title等信息），不同的情况下 设置的方式也不一样的！。
 UINavigationItem 对象是什么，设置标题和其他属性，UINavigationBar  的两种显示模式，
 
-# 相机Camera
+# 相机 Camera
 > 本章重点，我们来看看如何调用相机📷
 
 关于IOS13 之后的相册权限问题。
@@ -603,5 +603,12 @@ UIImagePickerController 对象鱼ViewController 是不一样的它必须要用 �
 
 解决完权限问题之后再看其他的后续操作。
 
+# UIResponder
+
+UIView 是 UIResponder 的子类 ，它上面有鱼touch 相关的许多方法，UITouch的工作机制 总结，Touch事件会进入由UIApplicatoin管理的事件队列中去，模型对象（用来描述线条），BNRLine 模型类 , BNRDrawView -View,  BNRDrawViewController -ViewController,  设置这个viewController 成为 rootViewController。目前的对象图。
+
+处理touch事件 并创建线条对象，比较简单 “两点确定一条直线的方式来绘制” , 处理多点触控的问题。可以使用对象的内存地址16进制作为键 来构建出一个HashMap,
+与HTML类似touch事件也存在一种类似的 响应对象链 ，深入了解一下UIController class
 # 关于MVVM在 OC中的实现和运用
-> 这一小节的内容是我 依据我的前端开发经验 加入的，旨在让IOS开发更加现代化, 我们将结合OC + RxSwift 完成一个简单的ToDoMVC demo
+
+ 这一小节的内容是我 依据我的前端开发经验 加入的，旨在让IOS开发更加现代化, 我们将结合OC + RxSwift 完成一个简单的ToDoMVC demo
